@@ -1,6 +1,8 @@
 export interface iArticle {
+  id: number;
   title: string;
-  image: string;
-  date: string;
-  tag: string;
+  body: string;
+  userId: number;
+  tags: string[];
+  reactions: number;
 }

@@ -1,90 +1,119 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import styles from "./app.module.css";
 import ArticleList from "./components/ArticleList";
-import { iArticle } from "./iArticle";
 
 const mockdata = [
   {
-    title: "Top 10 places to visit in Norway this summer",
-    image:
-      "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
-    date: "August 18, 2022",
-    tag: "crime",
+    id: 1,
+    title: "His mother had always taught him",
+    body: "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto. He never looked down on those who were less fortunate or who had less money than him. But the stupidity of the group of people he was talking to made him change his mind.",
+    userId: 9,
+    tags: ["history", "american", "crime"],
+    reactions: 2,
   },
   {
-    title: "Top 10 places to visit in Norway this summer2",
-    image:
-      "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
-    date: "August 18, 2022",
-    tag: "crime",
+    id: 2,
+    title: "He was an expert but not in a discipline",
+    body: "He was an expert but not in a discipline that anyone could fully appreciate. He knew how to hold the cone just right so that the soft server ice-cream fell into it at the precise angle to form a perfect cone each and every time. It had taken years to perfect and he could now do it without even putting any thought behind it.",
+    userId: 13,
+    tags: ["french", "fiction", "english"],
+    reactions: 2,
   },
   {
-    title: "Top 10 places to visit in Norway this summer3",
-    image:
-      "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
-    date: "August 18, 2022",
-    tag: "crime",
+    id: 3,
+    title: "Dave watched as the forest burned up on the hill.",
+    body: "Dave watched as the forest burned up on the hill, only a few miles from her house. The car had been hastily packed and Marta was inside trying to round up the last of the pets. Dave went through his mental list of the most important papers and documents that they couldn't leave behind. He scolded himself for not having prepared these better in advance and hoped that he had remembered everything that was needed. He continued to wait for Marta to appear with the pets, but she still was nowhere to be seen.",
+    userId: 32,
+    tags: ["magical", "history", "french"],
+    reactions: 5,
   },
   {
-    title: "Best forests to visit in North America",
-    image:
-      "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
-    date: "August 27, 2022",
-    tag: "history",
+    id: 4,
+    title: "All he wanted was a candy bar.",
+    body: "All he wanted was a candy bar. It didn't seem like a difficult request to comprehend, but the clerk remained frozen and didn't seem to want to honor the request. It might have had something to do with the gun pointed at his face.",
+    userId: 12,
+    tags: ["mystery", "english", "american"],
+    reactions: 1,
   },
   {
-    title: "Hawaii beaches review: better than you think",
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
-    date: "September 9, 2022",
-    tag: "comedy",
+    id: 5,
+    title: "Hopes and dreams were dashed that day.",
+    body: "Hopes and dreams were dashed that day. It should have been expected, but it still came as a shock. The warning signs had been ignored in favor of the possibility, however remote, that it could actually happen. That possibility had grown from hope to an undeniable belief it must be destiny. That was until it wasn't and the hopes and dreams came crashing down.",
+    userId: 41,
+    tags: ["crime", "mystery", "love"],
+    reactions: 2,
   },
   {
-    title: "Hawaii beaches review: better than you think2",
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
-    date: "September 9, 2022",
-    tag: "comedy",
+    id: 6,
+    title: "Dave wasn't exactly sure how he had ended up",
+    body: "Dave wasn't exactly sure how he had ended up in this predicament. He ran through all the events that had lead to this current situation and it still didn't make sense. He wanted to spend some time to try and make sense of it all, but he had higher priorities at the moment. The first was how to get out of his current situation of being naked in a tree with snow falling all around and no way for him to get down.",
+    userId: 47,
+    tags: ["english", "classic", "american"],
+    reactions: 3,
   },
   {
-    title: "Hawaii beaches review: better than you think3",
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
-    date: "September 9, 2022",
-    tag: "comedy",
+    id: 7,
+    title: "This is important to remember.",
+    body: "This is important to remember. Love isn't like pie. You don't need to divide it among all your friends and loved ones. No matter how much love you give, you can always give more. It doesn't run out, so don't try to hold back giving it as if it may one day run out. Give it freely and as much as you want.",
+    userId: 12,
+    tags: ["magical", "crime"],
+    reactions: 0,
   },
   {
-    title: "Mountains at night: 12 best locations to enjoy the view",
-    image:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80",
-    date: "September 12, 2022",
-    tag: "mystery",
+    id: 8,
+    title: "One can cook on and with an open fire.",
+    body: "One can cook on and with an open fire. These are some of the ways to cook with fire outside. Cooking meat using a spit is a great way to evenly cook meat. In order to keep meat from burning, it's best to slowly rotate it.",
+    userId: 31,
+    tags: ["american", "english"],
+    reactions: 9,
+  },
+  {
+    id: 9,
+    title: "There are different types of secrets.",
+    body: "There are different types of secrets. She had held onto plenty of them during her life, but this one was different. She found herself holding onto the worst type. It was the type of secret that could gnaw away at your insides if you didn't tell someone about it, but it could end up getting you killed if you did.",
+    userId: 42,
+    tags: ["american", "history", "magical"],
+    reactions: 2,
+  },
+  {
+    id: 10,
+    title: "They rushed out the door.",
+    body: "They rushed out the door, grabbing anything and everything they could think of they might need. There was no time to double-check to make sure they weren't leaving something important behind. Everything was thrown into the car and they sped off. Thirty minutes later they were safe and that was when it dawned on them that they had forgotten the most important thing of all.",
+    userId: 1,
+    tags: ["fiction", "magical", "history"],
+    reactions: 4,
   },
 ];
 
 const App: FC = () => {
-  const crimeData = mockdata.filter((data) => data.tag === "crime");
-  const historyData = mockdata.filter((data) => data.tag === "history");
-  const comedyData = mockdata.filter((data) => data.tag === "comedy");
-  const mysteryData = mockdata.filter((data) => data.tag === "mystery");
+  const crimeData = mockdata.filter((data) => data.tags.includes("crime"));
+  const historyData = mockdata.filter((data) => data.tags.includes("history"));
+  const fictionData = mockdata.filter((data) => data.tags.includes("fiction"));
+  const magicalData = mockdata.filter((data) => data.tags.includes("magical"));
+  const loveData = mockdata.filter((data) => data.tags.includes("love"));
+
   return (
     <div>
       <h1>My Tiny Blog</h1>
-      <section>
-        <h2>Crime</h2>
+      <section className={styles.crime__container}>
+        <h2 className={styles.crime__header}>crime</h2>
         <ArticleList articles={crimeData} />
       </section>
-      <section>
-        <h2>history</h2>
+      <section className={styles.history__container}>
+        <h2 className={styles.history__header}>history</h2>
         <ArticleList articles={historyData} />
       </section>
-      <section>
-        <h2>comedy</h2>
-        <ArticleList articles={comedyData} />
+      <section className={styles.fiction__container}>
+        <h2 className={styles.fiction__header}>fiction</h2>
+        <ArticleList articles={fictionData} />
       </section>
-      <section>
-        <h2>mystery</h2>
-        <ArticleList articles={mysteryData} />
+      <section className={styles.magical__container}>
+        <h2 className={styles.magical__header}>magical</h2>
+        <ArticleList articles={magicalData} />
+      </section>
+      <section className={styles.love__container}>
+        <h2 className={styles.love__header}>love</h2>
+        <ArticleList articles={loveData} />
       </section>
     </div>
   );
