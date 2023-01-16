@@ -4,3 +4,15 @@
   justify-content: space-between;
   align-items: center;
 }
+
+a:link {
+  list-style: none;
+  text-decoration: none;
+  transition: 150ms ease;
+  color: rgb(78, 78, 78);
+}
+
+a:hover {
+  transform: scale(1.02);
+  color: black;
+}

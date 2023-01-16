@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./app.module.css";
 import ArticleList from "./components/ArticleList";
-import AnchorLink from "react-anchor-link-smooth-scroll";
 import { iArticle } from "./iArticle";
 import MainHeader from "./components/MainHeader";
 

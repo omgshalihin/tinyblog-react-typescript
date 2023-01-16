@@ -1,15 +1,4 @@
-import { useState } from "react";
-import {
-  createStyles,
-  Header,
-  Container,
-  Group,
-  Burger,
-  Paper,
-  Transition,
-} from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { MantineLogo } from "@mantine/ds";
+import { Header, Container, Group } from "@mantine/core";
 import styles from "./mainHeader.module.css";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
@@ -22,19 +11,19 @@ export default function HeaderResponsive() {
         <p>My Tiny Blog</p>
         <Group spacing={5}>
           <AnchorLink href="#crime">
-            <button>crime</button>
+            <li>Crime</li>
           </AnchorLink>
           <AnchorLink href="#history">
-            <button>history</button>
+            <li>History</li>
           </AnchorLink>
           <AnchorLink href="#fiction">
-            <button>fiction</button>
+            <li>Fiction</li>
           </AnchorLink>
           <AnchorLink href="#magical">
-            <button>magical</button>
+            <li>Magical</li>
           </AnchorLink>
           <AnchorLink href="#love">
-            <button>love</button>
+            <li>Love</li>
           </AnchorLink>
         </Group>
       </Container>
