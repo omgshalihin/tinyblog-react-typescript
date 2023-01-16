@@ -1,26 +1,14 @@
 import React, { FC } from "react";
 import styles from "./singleArticle.module.css";
+import { IconHeart } from "@tabler/icons";
 import {
-  IconBookmark,
-  IconColorSwatch,
-  IconHeart,
-  IconShare,
-} from "@tabler/icons";
-import {
-  createStyles,
-  SimpleGrid,
   Card,
   Image,
   Text,
-  Container,
   AspectRatio,
   Badge,
   Group,
   ActionIcon,
-  Avatar,
-  Center,
-  Paper,
-  ThemeIcon,
 } from "@mantine/core";
 import { iArticle } from "../iArticle";
 
@@ -55,10 +43,12 @@ const SingleArticle: FC<iProps> = ({ article }) => {
         {article.body}
       </Text>
       <Card.Section className={styles.footer}>
+        {article.tags.map((tag, index) => (
+          <Badge className={styles.badge} key={index}>
+            {tag}
+          </Badge>
+        ))}
         <Group position="apart">
-          {article.tags.map((tag, index) => (
-            <Badge key={index}>{tag}</Badge>
-          ))}
           <Group spacing={0}>
             <ActionIcon>
               <IconHeart size={18} stroke={1.5} />

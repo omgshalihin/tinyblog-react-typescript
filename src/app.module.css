@@ -1,15 +1,3 @@
-.crime__container {
-  background-color: pink;
-}
-
-.crime__header {
-  background-color: rgb(255, 167, 182);
-}
-
-.history__container {
-  background-color: blue;
-}
-
-.history__header {
-  background-color: rgb(126, 126, 250);
+.blog__title {
+  text-align: center;
 }

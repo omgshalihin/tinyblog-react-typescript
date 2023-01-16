@@ -1,119 +1,62 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./app.module.css";
 import ArticleList from "./components/ArticleList";
+import { iArticle } from "./iArticle";
 
-const mockdata = [
-  {
-    id: 1,
-    title: "His mother had always taught him",
-    body: "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto. He never looked down on those who were less fortunate or who had less money than him. But the stupidity of the group of people he was talking to made him change his mind.",
-    userId: 9,
-    tags: ["history", "american", "crime"],
-    reactions: 2,
-  },
-  {
-    id: 2,
-    title: "He was an expert but not in a discipline",
-    body: "He was an expert but not in a discipline that anyone could fully appreciate. He knew how to hold the cone just right so that the soft server ice-cream fell into it at the precise angle to form a perfect cone each and every time. It had taken years to perfect and he could now do it without even putting any thought behind it.",
-    userId: 13,
-    tags: ["french", "fiction", "english"],
-    reactions: 2,
-  },
-  {
-    id: 3,
-    title: "Dave watched as the forest burned up on the hill.",
-    body: "Dave watched as the forest burned up on the hill, only a few miles from her house. The car had been hastily packed and Marta was inside trying to round up the last of the pets. Dave went through his mental list of the most important papers and documents that they couldn't leave behind. He scolded himself for not having prepared these better in advance and hoped that he had remembered everything that was needed. He continued to wait for Marta to appear with the pets, but she still was nowhere to be seen.",
-    userId: 32,
-    tags: ["magical", "history", "french"],
-    reactions: 5,
-  },
-  {
-    id: 4,
-    title: "All he wanted was a candy bar.",
-    body: "All he wanted was a candy bar. It didn't seem like a difficult request to comprehend, but the clerk remained frozen and didn't seem to want to honor the request. It might have had something to do with the gun pointed at his face.",
-    userId: 12,
-    tags: ["mystery", "english", "american"],
-    reactions: 1,
-  },
-  {
-    id: 5,
-    title: "Hopes and dreams were dashed that day.",
-    body: "Hopes and dreams were dashed that day. It should have been expected, but it still came as a shock. The warning signs had been ignored in favor of the possibility, however remote, that it could actually happen. That possibility had grown from hope to an undeniable belief it must be destiny. That was until it wasn't and the hopes and dreams came crashing down.",
-    userId: 41,
-    tags: ["crime", "mystery", "love"],
-    reactions: 2,
-  },
-  {
-    id: 6,
-    title: "Dave wasn't exactly sure how he had ended up",
-    body: "Dave wasn't exactly sure how he had ended up in this predicament. He ran through all the events that had lead to this current situation and it still didn't make sense. He wanted to spend some time to try and make sense of it all, but he had higher priorities at the moment. The first was how to get out of his current situation of being naked in a tree with snow falling all around and no way for him to get down.",
-    userId: 47,
-    tags: ["english", "classic", "american"],
-    reactions: 3,
-  },
-  {
-    id: 7,
-    title: "This is important to remember.",
-    body: "This is important to remember. Love isn't like pie. You don't need to divide it among all your friends and loved ones. No matter how much love you give, you can always give more. It doesn't run out, so don't try to hold back giving it as if it may one day run out. Give it freely and as much as you want.",
-    userId: 12,
-    tags: ["magical", "crime"],
-    reactions: 0,
-  },
-  {
-    id: 8,
-    title: "One can cook on and with an open fire.",
-    body: "One can cook on and with an open fire. These are some of the ways to cook with fire outside. Cooking meat using a spit is a great way to evenly cook meat. In order to keep meat from burning, it's best to slowly rotate it.",
-    userId: 31,
-    tags: ["american", "english"],
-    reactions: 9,
-  },
-  {
-    id: 9,
-    title: "There are different types of secrets.",
-    body: "There are different types of secrets. She had held onto plenty of them during her life, but this one was different. She found herself holding onto the worst type. It was the type of secret that could gnaw away at your insides if you didn't tell someone about it, but it could end up getting you killed if you did.",
-    userId: 42,
-    tags: ["american", "history", "magical"],
-    reactions: 2,
-  },
-  {
-    id: 10,
-    title: "They rushed out the door.",
-    body: "They rushed out the door, grabbing anything and everything they could think of they might need. There was no time to double-check to make sure they weren't leaving something important behind. Everything was thrown into the car and they sped off. Thirty minutes later they were safe and that was when it dawned on them that they had forgotten the most important thing of all.",
-    userId: 1,
-    tags: ["fiction", "magical", "history"],
-    reactions: 4,
-  },
-];
+type DataType = {
+  tags: string | string[];
+};
 
 const App: FC = () => {
-  const crimeData = mockdata.filter((data) => data.tags.includes("crime"));
-  const historyData = mockdata.filter((data) => data.tags.includes("history"));
-  const fictionData = mockdata.filter((data) => data.tags.includes("fiction"));
-  const magicalData = mockdata.filter((data) => data.tags.includes("magical"));
-  const loveData = mockdata.filter((data) => data.tags.includes("love"));
+  const [data, setData] = useState<iArticle>();
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await fetch("https://dummyjson.com/posts");
+      const data = await response.json();
+      setData(data.posts);
+    };
+    getData();
+  }, []);
+
+  if (data === undefined) return <h1>Loading...</h1>;
+
+  const crimeData = data.filter((data: DataType) =>
+    data.tags.includes("crime")
+  );
+  const historyData = data.filter((data: DataType) =>
+    data.tags.includes("history")
+  );
+  const fictionData = data.filter((data: DataType) =>
+    data.tags.includes("fiction")
+  );
+  const magicalData = data.filter((data: DataType) =>
+    data.tags.includes("magical")
+  );
+  const loveData = data.filter((data: DataType) => data.tags.includes("love"));
 
   return (
     <div>
-      <h1>My Tiny Blog</h1>
+      <h1 className={styles.blog__title}>My Tiny Blog</h1>
+
       <section className={styles.crime__container}>
-        <h2 className={styles.crime__header}>crime</h2>
-        <ArticleList articles={crimeData} />
+        <ArticleList articles={crimeData} header="crime" />
       </section>
+
       <section className={styles.history__container}>
-        <h2 className={styles.history__header}>history</h2>
-        <ArticleList articles={historyData} />
+        <ArticleList articles={historyData} header="history" />
       </section>
+
       <section className={styles.fiction__container}>
-        <h2 className={styles.fiction__header}>fiction</h2>
-        <ArticleList articles={fictionData} />
+        <ArticleList articles={fictionData} header="fiction" />
       </section>
+
       <section className={styles.magical__container}>
-        <h2 className={styles.magical__header}>magical</h2>
-        <ArticleList articles={magicalData} />
+        <ArticleList articles={magicalData} header="magical" />
       </section>
+
       <section className={styles.love__container}>
-        <h2 className={styles.love__header}>love</h2>
-        <ArticleList articles={loveData} />
+        <ArticleList articles={loveData} header="love" />
       </section>
     </div>
   );

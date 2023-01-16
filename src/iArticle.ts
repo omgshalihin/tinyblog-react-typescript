@@ -1,4 +1,5 @@
 export interface iArticle {
+  filter: any;
   id: number;
   title: string;
   body: string;
