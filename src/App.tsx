@@ -1,7 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./app.module.css";
 import ArticleList from "./components/ArticleList";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 import { iArticle } from "./iArticle";
+import MainHeader from "./components/MainHeader";
 
 type DataType = {
   tags: string | string[];
@@ -37,25 +39,26 @@ const App: FC = () => {
 
   return (
     <div>
+      <MainHeader />
       <h1 className={styles.blog__title}>My Tiny Blog</h1>
 
-      <section className={styles.crime__container}>
+      <section id="crime" className={styles.crime__container}>
         <ArticleList articles={crimeData} header="crime" />
       </section>
 
-      <section className={styles.history__container}>
+      <section id="history" className={styles.history__container}>
         <ArticleList articles={historyData} header="history" />
       </section>
 
-      <section className={styles.fiction__container}>
+      <section id="fiction" className={styles.fiction__container}>
         <ArticleList articles={fictionData} header="fiction" />
       </section>
 
-      <section className={styles.magical__container}>
+      <section id="magical" className={styles.magical__container}>
         <ArticleList articles={magicalData} header="magical" />
       </section>
 
-      <section className={styles.love__container}>
+      <section id="love" className={styles.love__container}>
         <ArticleList articles={loveData} header="love" />
       </section>
     </div>
