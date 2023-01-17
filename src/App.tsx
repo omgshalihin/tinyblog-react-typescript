@@ -23,42 +23,45 @@ const App: FC = () => {
   if (data === undefined) return <h1>Loading...</h1>;
 
   const crimeData = data.filter((data: DataType) =>
-    data.tags.includes("crime")
+    data.tags.includes("Crime")
   );
   const historyData = data.filter((data: DataType) =>
-    data.tags.includes("history")
+    data.tags.includes("History")
   );
   const fictionData = data.filter((data: DataType) =>
-    data.tags.includes("fiction")
+    data.tags.includes("Fiction")
   );
   const magicalData = data.filter((data: DataType) =>
-    data.tags.includes("magical")
+    data.tags.includes("Magical")
   );
-  const loveData = data.filter((data: DataType) => data.tags.includes("love"));
+  const loveData = data.filter((data: DataType) => data.tags.includes("Love"));
 
   return (
     <div>
-      <MainHeader />
+      <header className={styles.header}>
+        <MainHeader />
+      </header>
+      <main className={styles.main}>
+        <section id="crime" className={styles.crime__container}>
+          <ArticleList articles={crimeData} header="crime" />
+        </section>
 
-      <section id="crime" className={styles.crime__container}>
-        <ArticleList articles={crimeData} header="crime" />
-      </section>
+        <section id="history" className={styles.history__container}>
+          <ArticleList articles={historyData} header="history" />
+        </section>
 
-      <section id="history" className={styles.history__container}>
-        <ArticleList articles={historyData} header="history" />
-      </section>
+        <section id="fiction" className={styles.fiction__container}>
+          <ArticleList articles={fictionData} header="fiction" />
+        </section>
 
-      <section id="fiction" className={styles.fiction__container}>
-        <ArticleList articles={fictionData} header="fiction" />
-      </section>
+        <section id="magical" className={styles.magical__container}>
+          <ArticleList articles={magicalData} header="magical" />
+        </section>
 
-      <section id="magical" className={styles.magical__container}>
-        <ArticleList articles={magicalData} header="magical" />
-      </section>
-
-      <section id="love" className={styles.love__container}>
-        <ArticleList articles={loveData} header="love" />
-      </section>
+        <section id="love" className={styles.love__container}>
+          <ArticleList articles={loveData} header="love" />
+        </section>
+      </main>
     </div>
   );
 };

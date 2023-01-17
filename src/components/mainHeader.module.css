@@ -1,6 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&display=swap");
+
 .header {
-  top: 0;
+  background-color: rgba(155, 155, 155, 0.7);
   position: fixed;
+  top: 0;
+  width: 100vw;
   z-index: 100;
 }
 
@@ -8,16 +12,24 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  color: black;
+}
+
+.website__name {
+  font-family: "Libre Barcode 39 Text", cursive;
+  font-weight: bold;
 }
 
 a:link {
   list-style: none;
   text-decoration: none;
   transition: 150ms ease;
-  color: rgb(78, 78, 78);
+  color: rgb(88, 88, 88);
 }
 
 a:hover {
   transform: scale(1.02);
   color: black;
+  font-weight: bold;
 }

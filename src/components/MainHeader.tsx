@@ -2,13 +2,13 @@ import { Header, Container, Group } from "@mantine/core";
 import styles from "./mainHeader.module.css";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
-const HEADER_HEIGHT = 60;
+const HEADER_HEIGHT = 30;
 
 export default function MainHeader() {
   return (
-    <Header className={styles.header} height={HEADER_HEIGHT}>
+    <div className={styles.header}>
       <Container className={styles.header__container}>
-        <p>My Tiny Blog</p>
+        <h1 className={styles.website__name}>My Tiny Blog</h1>
         <Group spacing={5}>
           <AnchorLink href="#crime">
             <li>Crime</li>
@@ -27,6 +27,6 @@ export default function MainHeader() {
           </AnchorLink>
         </Group>
       </Container>
-    </Header>
+    </div>
   );
 }
