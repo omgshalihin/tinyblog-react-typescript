@@ -39,7 +39,6 @@ const App: FC = () => {
   return (
     <div>
       <MainHeader />
-      <h1 className={styles.blog__title}>My Tiny Blog</h1>
 
       <section id="crime" className={styles.crime__container}>
         <ArticleList articles={crimeData} header="crime" />

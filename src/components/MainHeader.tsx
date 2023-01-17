@@ -4,10 +4,10 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const HEADER_HEIGHT = 60;
 
-export default function HeaderResponsive() {
+export default function MainHeader() {
   return (
-    <Header height={HEADER_HEIGHT} mb={120}>
-      <Container className={styles.header}>
+    <Header className={styles.header} height={HEADER_HEIGHT}>
+      <Container className={styles.header__container}>
         <p>My Tiny Blog</p>
         <Group spacing={5}>
           <AnchorLink href="#crime">
