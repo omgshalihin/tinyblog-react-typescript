@@ -14,7 +14,6 @@ const ArticleList: FC<iProps> = ({ articles, header }) => {
 
   const toggleVisibility = () => {
     const section = document.getElementById(`toggle ${header}`);
-    console.log("click");
     if (!isVisible) {
       section?.style.setProperty("display", "none");
     } else {

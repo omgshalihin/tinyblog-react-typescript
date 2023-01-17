@@ -33,6 +33,8 @@ const SingleArticle: FC<iProps> = ({ article, header }) => {
     getImage();
   }, []);
 
+  console.log(import.meta.env.VITE_ACCESS_KEY);
+
   if (images === undefined) return <h1>Loading Dog Pictures...</h1>;
 
   return (
