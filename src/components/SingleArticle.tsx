@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "./singleArticle.module.css";
 import { IconHeart } from "@tabler/icons";
 import {
@@ -14,9 +14,27 @@ import { iArticle } from "../iArticle";
 
 interface iProps {
   article: iArticle;
+  header: string;
 }
 
-const SingleArticle: FC<iProps> = ({ article }) => {
+const SingleArticle: FC<iProps> = ({ article, header }) => {
+  const [images, setImages] = useState();
+  const REACT_APP_UNSPLASH_ACCESS_KEY =
+    "tVZ5XSggCGfp4quPNGW_BIEULp4AV06QDPbnVUKT3Xc";
+  const apiURL = `https://api.unsplash.com/search/photos/?client_id=${REACT_APP_UNSPLASH_ACCESS_KEY}&page=1&query=${header}`;
+
+  useEffect(() => {
+    const getImage = async () => {
+      const response = await fetch(apiURL);
+      const newImage = await response.json();
+      const result = newImage.results;
+      setImages(result);
+    };
+    getImage();
+  }, []);
+
+  if (images === undefined) return <h1>Loading Dog Pictures...</h1>;
+
   return (
     <Card
       key={article.id}
@@ -27,7 +45,7 @@ const SingleArticle: FC<iProps> = ({ article }) => {
       className={styles.card}
     >
       <AspectRatio ratio={1920 / 1080}>
-        <Image src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80" />
+        <Image src={images[Math.floor(Math.random() * 10)].urls.small} />
       </AspectRatio>
       <Text
         className={styles.title}

@@ -15,7 +15,11 @@ const ArticleList: FC<iProps> = ({ articles, header }) => {
       <h2 className={styles.header}>{header.toUpperCase()}</h2>
       <SimpleGrid cols={2} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
         {articles.map((article) => (
-          <SingleArticle key={article.title} article={article} />
+          <SingleArticle
+            key={article.title}
+            article={article}
+            header={header}
+          />
         ))}
       </SimpleGrid>
     </Container>
