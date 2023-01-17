@@ -18,7 +18,7 @@ interface iProps {
 }
 
 const SingleArticle: FC<iProps> = ({ article, header }) => {
-  const [images, setImages] = useState();
+  const [images, setImages] = useState<any[]>();
   const REACT_APP_UNSPLASH_ACCESS_KEY =
     "tVZ5XSggCGfp4quPNGW_BIEULp4AV06QDPbnVUKT3Xc";
   const apiURL = `https://api.unsplash.com/search/photos/?client_id=${REACT_APP_UNSPLASH_ACCESS_KEY}&page=1&query=${header}`;
@@ -45,7 +45,7 @@ const SingleArticle: FC<iProps> = ({ article, header }) => {
       className={styles.card}
     >
       <AspectRatio ratio={1920 / 1080}>
-        <Image src={images[Math.floor(Math.random() * 10)].urls.small} />
+        <Image src={images[Math.floor(Math.random() * 10)].urls.regular} />
       </AspectRatio>
       <Text
         className={styles.title}
