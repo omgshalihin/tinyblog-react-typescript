@@ -20,7 +20,7 @@ interface iProps {
 const SingleArticle: FC<iProps> = ({ article, header }) => {
   const [images, setImages] = useState<any[]>();
   const apiURL = `https://api.unsplash.com/search/photos/?client_id=${
-    import.meta.env.VITE_APP_UNSPLASH_ACCESS_KEY
+    import.meta.env.VITE_ACCESS_KEY
   }&page=1&query=${header}`;
 
   useEffect(() => {
