@@ -23,18 +23,18 @@ const App: FC = () => {
   if (data === undefined) return <h1>Loading...</h1>;
 
   const crimeData = data.filter((data: DataType) =>
-    data.tags.includes("Crime")
+    data.tags.includes("crime")
   );
   const historyData = data.filter((data: DataType) =>
-    data.tags.includes("History")
+    data.tags.includes("history")
   );
   const fictionData = data.filter((data: DataType) =>
-    data.tags.includes("Fiction")
+    data.tags.includes("fiction")
   );
   const magicalData = data.filter((data: DataType) =>
-    data.tags.includes("Magical")
+    data.tags.includes("magical")
   );
-  const loveData = data.filter((data: DataType) => data.tags.includes("Love"));
+  const loveData = data.filter((data: DataType) => data.tags.includes("love"));
 
   return (
     <div>
