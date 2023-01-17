@@ -42,7 +42,7 @@ const App: FC = () => {
         <MainHeader />
       </header>
       <main className={styles.main}>
-        <section id="crime" className={styles.crime__container}>
+        <section id="crime">
           <ArticleList articles={crimeData} header="crime" />
         </section>
 
