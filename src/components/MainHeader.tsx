@@ -2,8 +2,6 @@ import { Header, Container, Group } from "@mantine/core";
 import styles from "./mainHeader.module.css";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
-const HEADER_HEIGHT = 30;
-
 export default function MainHeader() {
   return (
     <div className={styles.header}>

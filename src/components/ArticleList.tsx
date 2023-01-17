@@ -24,10 +24,24 @@ const ArticleList: FC<iProps> = ({ articles, header }) => {
   };
   return (
     <Container py="xl">
-      <h2 className={styles.header}>
-        {header.toUpperCase()}{" "}
-        <button onClick={toggleVisibility}>toggle {header}</button>
-      </h2>
+      <div className={styles.header__container}>
+        <h2 className={styles.header}>{header.toUpperCase()}</h2>
+        {!isVisible ? (
+          <div className={styles.caret} onClick={toggleVisibility}>
+            <div
+              className={styles.over__caret}
+              onClick={toggleVisibility}
+            ></div>
+          </div>
+        ) : (
+          <div className={styles.caret2} onClick={toggleVisibility}>
+            <div
+              className={styles.over__caret2}
+              onClick={toggleVisibility}
+            ></div>
+          </div>
+        )}
+      </div>
 
       <SimpleGrid
         id={`toggle ${header}`}

@@ -1,5 +1,56 @@
-.header {
+.header__container {
   padding: 0px 16px 0px 16px;
   margin-bottom: 0;
-  margin-top: 70px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header {
+  padding-right: 15px;
+}
+
+.caret {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid black;
+}
+
+.over__caret {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid white;
+  position: relative;
+  top: -10px;
+  left: -5px;
+}
+
+.caret:hover {
+  cursor: pointer;
+}
+
+.caret2 {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-left: 10px solid black;
+  border-bottom: 10px solid transparent;
+}
+
+.over__caret2 {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-left: 5px solid white;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  position: relative;
+  bottom: 5px;
+  left: -10px;
 }
