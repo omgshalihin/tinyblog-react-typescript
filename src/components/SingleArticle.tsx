@@ -19,9 +19,9 @@ interface iProps {
 
 const SingleArticle: FC<iProps> = ({ article, header }) => {
   const [images, setImages] = useState<any[]>();
-  const REACT_APP_UNSPLASH_ACCESS_KEY =
-    "tVZ5XSggCGfp4quPNGW_BIEULp4AV06QDPbnVUKT3Xc";
-  const apiURL = `https://api.unsplash.com/search/photos/?client_id=${REACT_APP_UNSPLASH_ACCESS_KEY}&page=1&query=${header}`;
+  const apiURL = `https://api.unsplash.com/search/photos/?client_id=${
+    import.meta.env.VITE_APP_UNSPLASH_ACCESS_KEY
+  }&page=1&query=${header}`;
 
   useEffect(() => {
     const getImage = async () => {
